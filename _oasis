@@ -1,0 +1,15 @@
+OASISFormat: 0.4
+Name:        CAM
+Version:     1
+Synopsis:    An implementation of CAM
+Authors:     jls@cs.ucf.edu
+License:     LGPL-2.1 with OCaml linking exception
+BuildTools: ocamlbuild
+Plugins: META (0.4), DevFiles (0.4)
+
+Executable "camlex"
+  Path:       src
+  MainIs:     camlex.ml
+  BuildDepends:
+    core, threads, extlib
+

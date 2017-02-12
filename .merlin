@@ -1,0 +1,6 @@
+PKG core
+PKG extlib
+
+S src
+
+B _build/src
