@@ -1,2 +1,4 @@
 "is_built_exec_cam" "true"
 "built_exec_cam" "/Users/jls/Documents/UCF/COP5621/ocam/_build/src/main.byte"
+"is_built_exec_camlex" "true"
+"built_exec_camlex" "/Users/jls/Documents/UCF/COP5621/ocam/_build/src/camlex.byte"
