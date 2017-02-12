@@ -1,6 +1,7 @@
 open Core.Std
 open Lexer
 open Utils
+open Format
 
 let getLex text = Lexer.to_string (getTokens text)
 let lex f = let text = load_file f in print_endline (getLex text)
