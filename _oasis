@@ -13,3 +13,9 @@ Executable "camlex"
   BuildDepends:
     core, threads, extlib
 
+Executable "camparse"
+  Path:       src
+  MainIs:     camparse.ml
+  BuildDepends:
+    core, threads, extlib
+
