@@ -1,4 +1,4 @@
-open Core.Std
+ open Core.Std
 open Utils
 open Compile  
 
@@ -8,10 +8,12 @@ let parse f = let tokens = lex f in
   let parseTree = Parser.parse tokens in 
   parseTree 
 
-let compile f = let parseTree = parse f in
+let doCompile f = let parseTree = parse f in
   let program = Compile.compile parseTree in
-  print_endline (Compile.to_string program)
-
+  print_endline (Compile.to_string program);
+  let v = Compile.evalProgram program in
+  print_endline (Vm.value_to_string v)
+ 
 let spec =
   let open Command.Spec in
   empty 
@@ -19,10 +21,11 @@ let spec =
 
 let command =
   Command.basic
-    ~summary:"CAM: The Categorical Abstract Machine (Compiler)"
-    ~readme:(fun () -> "The CAM compiler generates object code.")
+    ~summary:"CAM: The Categorical Abstract Machine (Rungime)"
+    ~readme:(fun () -> "The CAM Runtime Compiles and Runs CAM code.")
     spec
-    (fun filename () -> compile filename)
+    (fun filename () -> doCompile filename)
 
 let () = 
   Command.run ~version:"1.0" command
+

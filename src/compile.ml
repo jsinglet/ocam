@@ -53,6 +53,11 @@ let rec comp env e = match e with
  
 let compile e = (comp [] e) @ [STOP]
 
+let evalProgram program = exec (program) [] (init_stack)
+let evalTree tree = exec (compile tree) [] (init_stack)
+let eval s = let tree = Parser.parse (Lexer.getTokens s) in
+  evalTree tree
+
 let rec to_string l = let ixns = List.map ~f:(fun x -> Vm.to_string x) l in
   let seperated = List.intersperse ixns ~sep:", " in
   "["  ^ (List.fold seperated ~init:"" ~f:(fun acc x -> acc ^ x)) ^ "]"

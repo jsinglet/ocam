@@ -25,3 +25,9 @@ Executable "camc"
   BuildDepends:
     core, threads, extlib
 
+Executable "cam"
+  Path:       src
+  MainIs:     cam.ml
+  BuildDepends:
+    core, threads, extlib
+
