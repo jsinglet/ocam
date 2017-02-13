@@ -1,6 +1,7 @@
 open Core.Std
 open Lexer
 open Format 
+
 type m_unop = M_FST | M_SND
 
 type m_binop = M_ADD | M_SUB | M_MULT | M_EQ | M_LT | M_GT | M_DIV
@@ -15,10 +16,11 @@ type exp = EXP_INT of int | EXP_BOOL of bool | EXP_STRING of string | EXP_PAIR o
   | EXP_LET of string * exp * exp
   | EXP_LETREC of string * exp * exp
 
-
 let terms = [Token.TokenAdd; Token.TokenMinus; Token.TokenEquals]
+
 let factors = [Token.TokenMultiply; Token.TokenDivide; Token.TokenGt; Token.TokenLt;]
-let ops = List.append terms factors  
+
+let ops = terms @ factors
 
 let stops = [Token.TokenIn; Token.TokenCloseParen; Token.TokenClosePair; Token.TokenThen; Token.TokenElse; Token.TokenComma] 
 
