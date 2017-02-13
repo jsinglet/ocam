@@ -3,7 +3,8 @@ open Lexer
 open Token
 open Utils
 open Format
- 
+
+  
 let getLex text = Lexer.to_string (getTokens text)
 let lex f = let text = load_file f in print_endline (getLex text)
 
@@ -19,7 +20,7 @@ let command =
     ~summary:"CAM: The Categorical Abstract Machine (Lexer)"
     ~readme:(fun () -> "More detailed information")
     spec
-    (fun filename () -> lex filename)
+    (fun filename () -> printProgram filename; lex filename)
 
 let () = 
   Command.run ~version:"1.0" command

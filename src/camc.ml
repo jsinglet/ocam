@@ -22,7 +22,7 @@ let command =
     ~summary:"CAM: The Categorical Abstract Machine (Compiler)"
     ~readme:(fun () -> "The CAM compiler generates object code.")
     spec
-    (fun filename () -> compile filename)
+    (fun filename () ->  printProgram filename; compile filename)
 
 let () = 
   Command.run ~version:"1.0" command

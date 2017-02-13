@@ -24,7 +24,7 @@ let command =
     ~summary:"CAM: The Categorical Abstract Machine (Rungime)"
     ~readme:(fun () -> "The CAM Runtime Compiles and Runs CAM code.")
     spec
-    (fun filename () -> doCompile filename)
+    (fun filename () ->  printProgram filename; doCompile filename)
 
 let () = 
   Command.run ~version:"1.0" command

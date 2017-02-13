@@ -1,3 +1,5 @@
+open Format
+
 
 let load_file f =
   let ic = open_in f in
@@ -6,3 +8,5 @@ let load_file f =
   really_input ic s 0 n;
   close_in ic;
   (s)
+
+let printProgram f = print_endline (sprintf "Input Program:\n\n %s\n\n" (load_file f))

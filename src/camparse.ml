@@ -19,7 +19,7 @@ let command =
     ~summary:"CAM: The Categorical Abstract Machine (Parser)"
     ~readme:(fun () -> "More detailed information")
     spec
-    (fun filename () -> parse filename)
+    (fun filename () ->  printProgram filename; parse filename)
 
 let () = 
   Command.run ~version:"1.0" command
