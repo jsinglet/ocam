@@ -19,3 +19,9 @@ Executable "camparse"
   BuildDepends:
     core, threads, extlib
 
+Executable "camc"
+  Path:       src
+  MainIs:     camc.ml
+  BuildDepends:
+    core, threads, extlib
+
