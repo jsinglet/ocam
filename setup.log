@@ -1,7 +1,3 @@
-"install-file" "/usr/local/bin/camlex"
-"install-file" "/usr/local/bin/camparse"
-"install-file" "/usr/local/bin/camc"
-"install-file" "/usr/local/bin/cam"
 "is_built_exec_camlex" "true"
 "built_exec_camlex" "/Users/jls/Documents/UCF/COP5621/ocam/_build/src/camlex.byte"
 "is_built_exec_camparse" "true"

@@ -26,11 +26,11 @@ and
 
 let pretty = sprintf 
 
-let rec value_to_string v = match v with
-  | ConstInt i -> pretty "ConstInt %d" i
-  | ConstBool b -> pretty "ConstBool %b" b
-  | ConstString s -> pretty "ConstString %s" s
-  (* | Pair (v1,v2)  -> pretty "Pair (%s,%s)" (value_to_string !v1) (value_to_string !v2) *)
+let rec value_to_string ?(mem=[]) v = match v with
+  | ConstInt i -> pretty "%d" i
+  | ConstBool b -> pretty "%b" b
+  | ConstString s -> pretty "%s" s
+  | Pair ((Ref (i1,v1)),(Ref (i2,v2)))  -> pretty "#%d" (i1) 
   | Adr l -> let ixns = List.map ~f:(fun x -> to_string x) l in
     let seperated = List.intersperse ixns ~sep:", " in
       "["  ^ (List.fold seperated ~init:"" ~f:(fun acc x -> acc ^ x)) ^ "]"
@@ -60,6 +60,13 @@ and to_string i = match i with
   | RETURN -> "RETURN"
   | BRANCH (v1,v2) -> pretty "BRANCH (%s,%s)" (value_to_string v1) (value_to_string v2)
 
+let formatBlock name vals = let parts = List.map ~f:(fun x -> value_to_string x) vals in
+  let seperated = List.intersperse parts ~sep:":" in
+     sprintf "%s %s" name ("["  ^ (List.fold seperated ~init:"" ~f:(fun acc x -> acc ^ x)) ^ "]")
+
+let printVMState code mem values = match (code) with
+  | (BRANCH (v1,v2)) -> (printf "BRANCH\n\tIF   =%s\n\tELSE =%s\n%-30s %-10s %-10s\n" (value_to_string v1) (value_to_string v2) "BRANCH CONTROL INFO:" (formatBlock "MEM" mem) (formatBlock "STACK" values))
+  | _ -> printf "%-30s %-10s %-10s\n" (to_string code) (formatBlock "MEM" mem) (formatBlock "STACK" values)
 
 let makePair mem v1 v2 =
   let access = fun n m -> List.nth_exn m n in 
@@ -73,7 +80,8 @@ let rec replaceLocation n v mem = match mem with
   | _ -> failwith "Memory Access Error."
 
 (* implementation of the VM *)
-let rec exec ixns m s = match ixns,s with
+let rec exec ixns m s = printVMState (List.hd_exn ixns) m s;
+  match ixns,s with
   | [STOP], [v]                          -> v
   | ((LOAD v)::code), (_::stack)       -> exec code m (v::stack)
   | ((PUSH v)::code), stack          -> exec code m (v::stack)
