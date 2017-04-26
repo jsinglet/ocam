@@ -24,12 +24,11 @@ let command =
 
 let add a b = a + b;;
 
-let main () =
-  print_endline "OK Dude\n\n\n\n";;
-
-main();;
+    
 
 let () = 
   Command.run ~version:"1.0" ~build_info:"RWO" command
+
+
 
 

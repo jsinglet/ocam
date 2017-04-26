@@ -29,3 +29,4 @@ let command =
 let () = 
   Command.run ~version:"1.0" command
 
+let add a b = a + b
