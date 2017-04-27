@@ -29,6 +29,7 @@ type token =
   | TokenComma
   | TokenFst
   | TokenSnd
+  | TokenSkip
 
 let to_string t = match t with
   | TokenBooleanLiteral b   -> "TokenBooleanLiteral " ^ Bool.to_string b
@@ -58,6 +59,7 @@ let to_string t = match t with
   | TokenComma             -> "TokenComma"
   | TokenFst               -> "TokenFst"
   | TokenSnd               -> "TokenSnd"
+  | TokenSkip              -> "TokenSkip"
 
 let keywords = [
   "let" , TokenLet;

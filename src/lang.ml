@@ -2,6 +2,24 @@ open Core.Std
 open Lexer
 open Format 
 
+(*
+Basic Syntax
+
+EXP e ::=  [e1,e2] | fst e | snd e 
+  | fun x | e1 e2 
+  | let name = e1 in e2
+  | let rec name=e1 in e2
+  | 0 ... 9
+  | e1 `op` e2 
+
+First Set = [, fst, snd, fun, let, digit
+Follow Set == First set
+
+
+# let a = + 1 in 1 + 1
+
+*)
+
 type m_unop = M_FST | M_SND
 
 type m_binop = M_ADD | M_SUB | M_MULT | M_EQ | M_LT | M_GT | M_DIV
